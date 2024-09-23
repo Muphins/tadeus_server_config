@@ -15,15 +15,15 @@ Edit /etc/systl.conf -> uncomment line "net.ipv4.ip_forward=1"
 Reboot
 # Kernel & ZFS
 https://wiki.omv-extras.org/doku.php?id=omv6:omv6_plugins:kernel
-Install openmediavault-kernel add-on
-Install Proxmox Kernel 6.5
-(as of 2024/09/22, kernel 6.8 causes problems to install updates and packages)
-Reboot
-Remove other kernels (ticked in column "Removable")
-Reboot
-In System>OMV Extras -> "Clean APT"
-Do updates
-Install ZFS addon
+- Install openmediavault-kernel add-on
+- Install Proxmox Kernel 6.5  
+  (as of 2024/09/22, kernel 6.8 causes problems to install updates and packages)
+- Reboot
+- Remove other kernels (ticked in column "Removable")
+- Reboot
+- In System>OMV Extras -> "Clean APT"
+- Do updates
+- Install ZFS addon
 # Disks & Health
 Activate SMART : https://wiki.omv-extras.org/doku.php?id=omv6:new_user_guide#hard_drive_health_and_smart
 # Docker
