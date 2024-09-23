@@ -7,8 +7,8 @@ Interrupt the command (CTRL+C) after a few seconds (I did 45-ish)
 - In "Storage>Disks" erase all the required disks
 - Identify the disks (/dev/sdX)
 - "Storage > ZFS > Pools > Add pool"
- - name the pool "hdd_pool" (no capitals)
- - no mount point
- - by ID
- - Force creation if disks are of different sizes
+  - name the pool "hdd_pool" (no capitals)
+  - no mount point
+  - by ID
+  - Force creation if disks are of different sizes
 - Apply changes
