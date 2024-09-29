@@ -4,7 +4,7 @@ services:
     image: mariadb:10.11
     container_name: seafile-db
     environment:
-      - MYSQL_ROOT_PASSWORD=qNpRb0937wOeEG  # Required, set the root's password of DB service.
+      - MYSQL_ROOT_PASSWORD=db_pass  # Required, set the root's password of DB service.
       - MYSQL_LOG_CONSOLE=true
       - MARIADB_AUTO_UPGRADE=1
     volumes:
@@ -29,12 +29,12 @@ services:
       - /mnt/seafile-data:/shared   # Required, specifies the path to Seafile data persistent store.
     environment:
       - DB_HOST=db
-      - DB_ROOT_PASSWD=qNpRb0937wOeEG  # Required, the value should be root's password of DB service.
+      - DB_ROOT_PASSWD=db_pass  # Required, the value should be root's password of DB service.
       - TIME_ZONE=Etc/UTC  # Optional, default is UTC. Should be uncomment and set to your local time zone.
-      - SEAFILE_ADMIN_EMAIL=admin@thelair.ovh # Specifies Seafile admin user, default is 'me@example.com'.
+      - SEAFILE_ADMIN_EMAIL=admin@example.com # Specifies Seafile admin user, default is 'me@example.com'.
       - SEAFILE_ADMIN_PASSWORD=asecret     # Specifies Seafile admin password, default is 'asecret'.
       - SEAFILE_SERVER_LETSENCRYPT=false   # Whether to use https or not.
-      - SEAFILE_SERVER_HOSTNAME=seafile.thelair.ovh # Specifies your host name if https is enabled.
+      - SEAFILE_SERVER_HOSTNAME=seafile.example.com # Specifies your host name if https is enabled.
     depends_on:
       - db
       - memcached
