@@ -1,0 +1,50 @@
+# edited from https://manual.seafile.com/docker/docker-compose/ce/11.0/docker-compose.yml
+services:
+  db:
+    image: mariadb:10.11
+    container_name: seafile-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=qNpRb0937wOeEG  # Required, set the root's password of DB service.
+      - MYSQL_LOG_CONSOLE=true
+      - MARIADB_AUTO_UPGRADE=1
+    volumes:
+      - /docker/appdata/seafile-db/db:/var/lib/mysql  # Required, specifies the path to DB data persistent store.
+    networks:
+      - seafile-network
+
+  memcached:
+    image: memcached:1.6.18
+    container_name: seafile-memcached
+    entrypoint: memcached -m 256
+    networks:
+      - seafile-network
+          
+  seafile:
+    image: seafileltd/seafile-mc:11.0-latest
+    container_name: seafile
+    ports:
+      - "8001:80"
+#     - "443:443"  # If https is enabled, cancel the comment.
+    volumes:
+      - /mnt/seafile-data:/shared   # Required, specifies the path to Seafile data persistent store.
+    environment:
+      - DB_HOST=db
+      - DB_ROOT_PASSWD=qNpRb0937wOeEG  # Required, the value should be root's password of DB service.
+      - TIME_ZONE=Etc/UTC  # Optional, default is UTC. Should be uncomment and set to your local time zone.
+      - SEAFILE_ADMIN_EMAIL=admin@thelair.ovh # Specifies Seafile admin user, default is 'me@example.com'.
+      - SEAFILE_ADMIN_PASSWORD=asecret     # Specifies Seafile admin password, default is 'asecret'.
+      - SEAFILE_SERVER_LETSENCRYPT=false   # Whether to use https or not.
+      - SEAFILE_SERVER_HOSTNAME=seafile.thelair.ovh # Specifies your host name if https is enabled.
+    depends_on:
+      - db
+      - memcached
+    networks:
+      - seafile-network
+
+networks:
+  seafile-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.145.0/20
+          gateway: 192.168.145.1
