@@ -15,6 +15,6 @@ Interrupt the command (CTRL+C) after a few seconds (I did 45-ish)
 
 # Add seafile user's libraries as external webdav filesystems
 - install add-on "openmediavault-remotemount 7.0.2"
-- In Storage > Remote Mount, create a new DAVFS mount point
-  Server= localhost:8080/seafdav/libraryName
+- In Storage > Remote Mount, create a new DAVFS mount point  
+  Server= localhost:8080/seafdav  
 New mount is located at /srv/remotemount/mountname
