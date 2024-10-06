@@ -24,6 +24,7 @@ services:
     container_name: seafile
     ports:
       - "8001:80"
+      - "8080:8080"  # nedded for correct operation of webdav
 #     - "443:443"  # If https is enabled, cancel the comment.
     volumes:
       - /mnt/seafile-data:/shared   # Required, specifies the path to Seafile data persistent store.
