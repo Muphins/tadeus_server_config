@@ -11,8 +11,11 @@ Follow the guide here: https://immich.app/docs/install/docker-compose
 - Change DB_DATA_LOCATION=/docker/app-data/immich
 - Add IMMICH_TRUSTED_PROXIES=192.168.144.3
 - Change immich version to v1.117.0
-# Setup Hardware-Accelerated Machine Learning
-Not possible for now
+# External libraries
+In compose file, add new volume for immich-server  
+```- /path/to/folder:/mnt/media/_name-of-the-library_```
+
+Follow the guide: https://immich.app/docs/features/libraries
 # using reverse proxy
 Immich login only works with https.  
 In administration parameters of immich, set the server's url: "https://immich.example.com"  
@@ -27,3 +30,5 @@ proxy_set_header X-Real-IP         $remote_addr;
 proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
 proxy_set_header X-Forwarded-Proto $scheme;
 ```
+# Setup Hardware-Accelerated Machine Learning
+Not possible for now
