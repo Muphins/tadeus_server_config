@@ -4,7 +4,7 @@ It seems impossible to delete a raid volume that was not created within OMV. I h
 Interrupt the command (CTRL+C) after a few seconds (I did 45-ish)
 
 # Create HDD ZFS pool
-- In "Storage>Disks" erase all the required disks
+- In "Storage > Disks" erase all the required disks
 - Identify the disks (/dev/sdX)
 - "Storage > ZFS > Pools > Add pool"
   - name the pool "hdd_pool" (no capitals)
@@ -12,6 +12,13 @@ Interrupt the command (CTRL+C) after a few seconds (I did 45-ish)
   - by ID
   - Force creation if disks are of different sizes
 - Apply changes
+
+# Create a ZFS filesystem for container's data storage
+- Storage > ZFS > Pools, select the disk pool, click Add
+- Chose Add filesystem
+  - Type = Filesystem
+  - Name = _container_-data
+  - Mountpoint = /mnt/_container_-data
 
 # Add seafile user's libraries as external webdav filesystems
 - install add-on "openmediavault-remotemount 7.0.2"
