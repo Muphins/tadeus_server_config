@@ -1,0 +1,32 @@
+---
+services:
+    adguardhome:
+        container_name: adguardhome
+        image: adguard/adguardhome
+        networks:
+          adguardhome:
+            ipv4_address: 10.0.0.86  #Change this to your ip address
+        volumes:
+            - CHANGE_TO_COMPOSE_DATA_PATH/adguardhome/workdir:/opt/adguardhome/work
+            - CHANGE_TO_COMPOSE_DATA_PATH/adguardhome/confdir:/opt/adguardhome/conf
+        restart: unless-stopped
+        ports:
+            # DNS
+            - 53:53
+            # DHCP server
+            # - 67:67/udp
+            # - 68:68/udp
+            # HTTPS/DNS-over-HTTPS
+            - 443:443/tcp
+            # DNS-over-TLS
+            - 853:853/tcp
+            # DNS-over-QUIC
+            - 853:853/udp
+            # DNSCrypt
+            - 5443:5443
+            # WebUI
+            - 3000:3000
+networks:
+   adguardhome:
+      name: xxx-macvlan  #This is the name of our macvlan
+      external: true
