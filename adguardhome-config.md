@@ -2,9 +2,10 @@
 ## Create a macvlan network
 In Services > Compose > Networks > (+)
 - Fill:  
-  Name  
+  Name: _xxx-macvlan_  
   Select macvlan  
+  Select the Parent network: _network interface_  
   choose a subnet  
   enter the Gateway  
-  Save
+  **Save**
 ## create the compose file
