@@ -25,3 +25,9 @@ Interrupt the command (CTRL+C) after a few seconds (I did 45-ish)
 - In Storage > Remote Mount, create a new DAVFS mount point  
   Server= localhost:8080/seafdav/  
 New mount is located at /srv/remotemount/mountname
+- To mount the fs as a specific OMV's user, add
+  ```
+  uid=1000,gid=100
+  ```
+  to the Options field (change the numbers for the correct user, found in the users settings).
+  _Useful to allow a docker user to access seafile as a volume, or to create a shared folder_
