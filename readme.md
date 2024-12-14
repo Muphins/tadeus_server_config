@@ -29,3 +29,6 @@ Activate SMART : https://wiki.omv-extras.org/doku.php?id=omv6:new_user_guide#har
 # Docker
 Install openmediavault-compose from the add-ons menu
 https://wiki.omv-extras.org/doku.php?id=omv6:omv6_plugins:docker_compose
+# E-mail notifications
+Warning, e-mail notifications do not work if "flash memory" plugin is installed  
+Setup e-mail SMTP credentials in System > Notification > Settings
