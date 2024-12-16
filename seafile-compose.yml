@@ -1,4 +1,4 @@
-# edited from https://manual.seafile.com/docker/docker-compose/ce/11.0/docker-compose.yml
+# edited from https://manual.seafile.com/11.0/docker/docker-compose/ce/11.0/docker-compose.yml
 services:
   db:
     image: mariadb:10.11
