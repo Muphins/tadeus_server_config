@@ -1,0 +1,47 @@
+# docker compose for nginx proxy manager open-appsec integration
+# open-appsec managed and monitored from nginx proxy manager web ui
+
+services:
+  appsec-npm:
+    container_name: npm-attachment
+    image: 'ghcr.io/openappsec/nginx-proxy-manager-attachment:latest'
+    ipc: host
+    restart: unless-stopped
+    ports:
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '8081:81' # Admin Web Port
+    volumes:
+      - PATHTOCOMPOSEDATA/npm_data:/data
+      - PATHTOCOMPOSEDATA/npm_letsencrypt:/etc/letsencrypt
+      - PATHTOCOMPOSEDATA/appsec_logs:/ext/appsec-logs
+      - PATHTOCOMPOSEDATA/appsec_localconfig:/ext/appsec
+    networks:
+      npm_network:
+        ipv4_address: changeme
+
+  appsec-agent:
+    container_name: appsec-agent
+    image: 'ghcr.io/openappsec/agent:latest'
+    ipc: host
+    restart: unless-stopped
+    environment:
+      # adjust with your own email below
+      - nginxproxymanager=true
+      - autoPolicyLoad=true
+    volumes:
+      - PATHTOCOMPOSEDATA/appsec_config:/etc/cp/conf
+      - PATHTOCOMPOSEDATA/appsec_data:/etc/cp/data
+      - PATHTOCOMPOSEDATA/appsec_logs:/var/log/nano_agent
+      - PATHTOCOMPOSEDATA/appsec_localconfig:/ext/appsec
+    networks:
+      - npm_network
+    command: /cp-nano-agent --standalone
+      
+networks:
+  npm_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: changeme/20
+          gateway: changeme
