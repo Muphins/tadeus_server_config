@@ -31,3 +31,15 @@ New mount is located at /srv/remotemount/mountname
   ```
   to the Options field (change the numbers for the correct user, found in the users settings).
   _Useful to allow a docker user to access seafile as a volume, or to create a shared folder_
+
+# Share a folder with SMB
+- In Storage > Shared Folders, create a new shared folder  
+  Choose a Name, Filesystem, location. Save, apply.
+- Edit Access Control List (topbar):
+  - Clic Recursive to apply the changes to all subfolders/files
+  - Select the owner and group
+  - select permissions of Owner, Group, and Others  
+    Select Read/Execute (or even write if needed) to Others to allow access by guests
+- In Services > SMB/CIFS > Shares, Add the newly created shaed folder
+  Allow guests if needed, otherwise default settings are good.
+- In windows, add a new network map, adress is "\\servername_or_IP\shared_folder"
